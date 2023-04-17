@@ -82,7 +82,6 @@ Plug 'scrooloose/syntastic'
 Plug 'junegunn/gv.vim'
 
 " Programming Lang Plugin
-Plug 'c.vim'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
 Plug 'davidhalter/jedi-vim'
