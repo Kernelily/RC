@@ -8,124 +8,140 @@
 "                 ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
 "               
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" VIM-PLUG ------------------------------------------------------------ {{{
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Plugin Manager
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+" Make sure you use single quotes
 
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'
 
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Any valid git URL is allowed
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+" Multiple Plug commands can be written in a single line using | separators
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" Conquer Of Compeletion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" NERDTree 
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdcommenter'
+
+" FirePlace
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+" CtrlP
+Plug 'ctrlpvim/ctrlp.vim'
+
+" TagBar
+Plug 'preservim/tagbar'
+
+" Airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+Plug 'fatih/vim-go', { 'tag': '*' }
+
+" Plugin options
+Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Vim Develop Env
 " Vim Workspace
-Plugin 'thaerkh/vim-workspace'
-
-" NERDTree
-Plugin 'scrooloose/nerdtree'
-Plugin 'xuyuanp/nerdtree-git-plugin'
-Plugin 'scrooloose/nerdcommenter'
+Plug 'thaerkh/vim-workspace'
 
 " Surround Vim
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Auto Brackets 
-Plugin 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 
 " Vim Test
-Plugin 'janko-m/vim-test'
+Plug 'janko-m/vim-test'
 
 " Syntastic
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " Vim Git Commit Browser
-Plugin 'junegunn/gv.vim'
-
-" Completer
-Plugin 'valloric/youcompleteme'
-
-" TagBar
-Plugin 'majutsushi/tagbar'
-
-" FzF
-Plugin 'junegunn/fzf'
-
-" Vim Cosmetic
-" Gruvbox
-Plugin 'morhetz/gruvbox'
-
-" Onedark
-Plugin 'joshdick/onedark.vim'
-
-" Vim Dev Icons
-Plugin 'ryanoasis/vim-devicons'
-
-" Vim Colors Solarized
-Plugin 'altercation/vim-colors-solarized'
-
-" Vim Airline Plugin
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-" ColorSchemes
-Plugin 'flazz/vim-colorschemes'
+Plug 'junegunn/gv.vim'
 
 " Programming Lang Plugin
-Plugin 'c.vim'
-Plugin 'fatih/vim-go'
-Plugin 'rust-lang/rust.vim'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'moll/vim-node'
+Plug 'c.vim'
+Plug 'fatih/vim-go'
+Plug 'rust-lang/rust.vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'moll/vim-node'
 
-" Other Lang
-Plugin 'elzr/vim-json'
-Plugin 'stephpy/vim-yaml'
-Plugin 'othree/html5.vim'
-Plugin 'ekalinin/dockerfile.vim'
-Plugin 'chr4/nginx.vim'
+Plug 'elzr/vim-json'
+Plug 'stephpy/vim-yaml'
+Plug 'othree/html5.vim'
+Plug 'ekalinin/dockerfile.vim'
+Plug 'chr4/nginx.vim'
 
-" Markdown Syntax
-Plugin 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 
-" Easy Alignment
-Plugin 'junegunn/vim-easy-align'
+" VIM GAS(GNU ASsembler) Highlighting
+Plug 'Shirk/vim-gas'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-filetype plugin on
+" Vim Cosmetic
+" Cosmetic Plugin
+Plug 'nanotech/jellybeans.vim'
 
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" Vim Dev Icons
+Plug 'ryanoasis/vim-devicons'
+
+" Gruvbox
+Plug 'morhetz/gruvbox'
+
+" Onedark
+Plug 'joshdick/onedark.vim'
+
+" Vim Dev Icons
+Plug 'ryanoasis/vim-devicons'
+
+" Vim Colors Solarized
+Plug 'altercation/vim-colors-solarized'
+
+" ColorSchemes
+Plug 'flazz/vim-colorschemes'
+
+" TreeSitter (neovim only)
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" GitHub Copilot (neovim only)
+" Plug 'github/copilot.vim'
+
+" Initialize plugin system
+" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+call plug#end()
+
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
+
+" }}}
+
+" PLUGIN SETTINGS  ---------------------------------------------------- {{{
+
+" Plugin Settings goes here.
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -170,14 +186,6 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
-filetype plugin on
-
 " Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -187,6 +195,12 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" }}}
+
+" VIM SETTINGS -------------------------------------------------------- {{{
+
+" Default vim settings goes here.
 
 " Set Theme
 set background=dark
@@ -250,14 +264,15 @@ set wildmode=list:longest
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
-" MAPPINGS --------------------------------------------------------------- {{{
+" }}}
+
+" MAPPINGS ------------------------------------------------------------ {{{
 
 " Mappings code goes here.
 
 " }}}
 
-
-" VIMSCRIPT -------------------------------------------------------------- {{{
+" VIMSCRIPT ----------------------------------------------------------- {{{
 
 " This will enable code folding.
 " Use the marker method of folding.
@@ -268,10 +283,14 @@ augroup END
 
 " More Vimscripts code goes here.
 
+" Inteligent NERDTree 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
 " }}}
 
-
-" STATUS LINE ------------------------------------------------------------ {{{
+" STATUS LINE --------------------------------------------------------- {{{
 
 " Status bar code goes here.
 
