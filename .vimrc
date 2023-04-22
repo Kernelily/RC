@@ -157,6 +157,7 @@ colorscheme jellybeans
 " NERDTree
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeShowHidden = 1
 
 " Create default mappings
 let g:NERDCreateDefaultMappings = 1
