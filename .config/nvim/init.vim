@@ -26,25 +26,25 @@ call plug#begin()
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 
+" GitHub Dashboard 
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
 " Multiple Plug commands can be written in a single line using | separators
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " Conquer Of Compeletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" TreeSitter
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
 " NERDTree 
 Plug 'preservim/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 
+" FirePlace
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
 " CtrlP
 Plug 'ctrlpvim/ctrlp.vim'
-
-" Auto Brackets 
-Plug 'jiangmiao/auto-pairs'
 
 " TagBar
 Plug 'preservim/tagbar'
@@ -53,20 +53,27 @@ Plug 'preservim/tagbar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" FirePlace
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-" VIM GAS(GNU ASsembler) Highlighting
-Plug 'Shirk/vim-gas'
+" Vim Develop Env
+" Vim Workspace
+Plug 'thaerkh/vim-workspace'
 
-" GitHub Copilot
-Plug 'github/copilot.vim'
+" Surround Vim
+Plug 'tpope/vim-surround'
 
-" Cosmetic Plugin
-Plug 'nanotech/jellybeans.vim'
+" Auto Brackets 
+Plug 'jiangmiao/auto-pairs'
 
-" Vim Dev Icons
-Plug 'ryanoasis/vim-devicons'
+" Vim Test
+Plug 'janko-m/vim-test'
+
+" Syntastic
+Plug 'scrooloose/syntastic'
+
+" Vim Git Commit Browser
+Plug 'junegunn/gv.vim'
 
 " Programming Lang Plugin
 Plug 'fatih/vim-go'
@@ -76,7 +83,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'moll/vim-node'
 
-" Other Lang
 Plug 'elzr/vim-json'
 Plug 'stephpy/vim-yaml'
 Plug 'othree/html5.vim'
@@ -86,18 +92,46 @@ Plug 'chr4/nginx.vim'
 " Markdown Syntax
 Plug 'plasticboy/vim-markdown'
 
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-Plug 'fatih/vim-go', { 'tag': '*' }
+" VIM GAS(GNU ASsembler) Highlighting
+Plug 'Shirk/vim-gas'
 
-" Plugin options
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+" Vim Cosmetic
+" Cosmetic Plugin
+Plug 'nanotech/jellybeans.vim'
 
-" Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Vim Dev Icons
+Plug 'ryanoasis/vim-devicons'
+
+" Gruvbox
+Plug 'morhetz/gruvbox'
+
+" Onedark
+Plug 'joshdick/onedark.vim'
+
+" Vim Dev Icons
+Plug 'ryanoasis/vim-devicons'
+
+" Vim Colors Solarized
+Plug 'altercation/vim-colors-solarized'
+
+" ColorSchemes
+Plug 'flazz/vim-colorschemes'
+
+" For NeoVim Only
+
+" TreeSitter (neovim only)
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" GitHub Copilot (neovim only)
+Plug 'github/copilot.vim'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
+
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
 
 " }}}
 
@@ -232,6 +266,9 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 " MAPPINGS ------------------------------------------------------------ {{{
 
 " Mappings code goes here.
+
+" Open NERDTree
+map <C-n> :NERDTreeToggle<CR>
 
 " }}}
 

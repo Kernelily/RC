@@ -26,7 +26,7 @@ call plug#begin()
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 
-" Any valid git URL is allowed
+" GitHub Dashboard
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
 " Multiple Plug commands can be written in a single line using | separators
@@ -52,12 +52,6 @@ Plug 'preservim/tagbar'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -95,6 +89,7 @@ Plug 'othree/html5.vim'
 Plug 'ekalinin/dockerfile.vim'
 Plug 'chr4/nginx.vim'
 
+" Markdown Syntax
 Plug 'plasticboy/vim-markdown'
 
 " VIM GAS(GNU ASsembler) Highlighting
@@ -121,6 +116,8 @@ Plug 'altercation/vim-colors-solarized'
 
 " ColorSchemes
 Plug 'flazz/vim-colorschemes'
+
+" For NeoVim Only
 
 " TreeSitter (neovim only)
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -269,6 +266,9 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 " MAPPINGS ------------------------------------------------------------ {{{
 
 " Mappings code goes here.
+
+" Open NERDTree
+map <C-n> :NERDTreeToggle<CR>
 
 " }}}
 
