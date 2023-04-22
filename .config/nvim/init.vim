@@ -26,25 +26,25 @@ call plug#begin()
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 
-" Any valid git URL is allowed
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
 " Multiple Plug commands can be written in a single line using | separators
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " Conquer Of Compeletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" TreeSitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " NERDTree 
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'preservim/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 
-" FirePlace
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
 " CtrlP
 Plug 'ctrlpvim/ctrlp.vim'
+
+" Auto Brackets 
+Plug 'jiangmiao/auto-pairs'
 
 " TagBar
 Plug 'preservim/tagbar'
@@ -52,6 +52,39 @@ Plug 'preservim/tagbar'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" FirePlace
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+" VIM GAS(GNU ASsembler) Highlighting
+Plug 'Shirk/vim-gas'
+
+" GitHub Copilot
+Plug 'github/copilot.vim'
+
+" Cosmetic Plugin
+Plug 'nanotech/jellybeans.vim'
+
+" Vim Dev Icons
+Plug 'ryanoasis/vim-devicons'
+
+" Programming Lang Plugin
+Plug 'fatih/vim-go'
+Plug 'rust-lang/rust.vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'moll/vim-node'
+
+" Other Lang
+Plug 'elzr/vim-json'
+Plug 'stephpy/vim-yaml'
+Plug 'othree/html5.vim'
+Plug 'ekalinin/dockerfile.vim'
+Plug 'chr4/nginx.vim'
+
+" Markdown Syntax
+Plug 'plasticboy/vim-markdown'
 
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
 Plug 'fatih/vim-go', { 'tag': '*' }
@@ -62,79 +95,9 @@ Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-" Vim Develop Env
-" Vim Workspace
-Plug 'thaerkh/vim-workspace'
-
-" Surround Vim
-Plug 'tpope/vim-surround'
-
-" Auto Brackets 
-Plug 'jiangmiao/auto-pairs'
-
-" Vim Test
-Plug 'janko-m/vim-test'
-
-" Syntastic
-Plug 'scrooloose/syntastic'
-
-" Vim Git Commit Browser
-Plug 'junegunn/gv.vim'
-
-" Programming Lang Plugin
-Plug 'fatih/vim-go'
-Plug 'rust-lang/rust.vim'
-Plug 'davidhalter/jedi-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'moll/vim-node'
-
-Plug 'elzr/vim-json'
-Plug 'stephpy/vim-yaml'
-Plug 'othree/html5.vim'
-Plug 'ekalinin/dockerfile.vim'
-Plug 'chr4/nginx.vim'
-
-Plug 'plasticboy/vim-markdown'
-
-" VIM GAS(GNU ASsembler) Highlighting
-Plug 'Shirk/vim-gas'
-
-" Vim Cosmetic
-" Cosmetic Plugin
-Plug 'nanotech/jellybeans.vim'
-
-" Vim Dev Icons
-Plug 'ryanoasis/vim-devicons'
-
-" Gruvbox
-Plug 'morhetz/gruvbox'
-
-" Onedark
-Plug 'joshdick/onedark.vim'
-
-" Vim Dev Icons
-Plug 'ryanoasis/vim-devicons'
-
-" Vim Colors Solarized
-Plug 'altercation/vim-colors-solarized'
-
-" ColorSchemes
-Plug 'flazz/vim-colorschemes'
-
-" TreeSitter (neovim only)
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-" GitHub Copilot (neovim only)
-Plug 'github/copilot.vim'
-
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
-
-" You can revert the settings after the call like so:
-"   filetype indent off   " Disable file-type-specific indentation
-"   syntax off            " Disable syntax highlighting
 
 " }}}
 
@@ -283,9 +246,9 @@ augroup END
 " More Vimscripts code goes here.
 
 " Inteligent NERDTree 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " }}}
 
