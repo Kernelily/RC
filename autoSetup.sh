@@ -33,7 +33,7 @@ echo "\nInstalled Some Langueages and so on"
 
 # Clone RC Files to ~/.tmp
 mkdir $HOME/.tmp
-git clone https://github.com/Kernelily/RC.git $HOME/.tmp/
+git clone git@github.com:Kernelily/RC.git $HOME/.tmp/
 cp -r $HOME/.tmp/.vimrc $HOME/
 cp -r $HOME/.tmp/.config $HOME/
 echo -e "\nCloned RC files to $HOME/.tmp\nAnd Copyed them to $HOME"
