@@ -25,26 +25,39 @@ systemctl enable --now sshd
 sed -i 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 systemctl restart sshd
 
+# Wait 5 Seconds
+sleep 5
+
 # Installing Some Langueages and so on...
-echo "\nInstalling Some Langueages and so on"
+echo -e "\nInstalling Some Langueages and so on"
 dnf install java-latest-openjdk-devel gcc g++ swift-lang pip \
     openssl-devel bzip2-devel sqlite-devel zlib-devel -y
 curl -sL install-node.vercel.app/lts | bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source "$HOME/.cargo/env"
 
+# Wait 5 Seconds
+sleep 5
+
 # Install Latest Python
+echo -e "\nInstalling Latest Python"
 cd $HOME/.tmp/.python
 wget https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tgz
 tar xzf Python-3.11.3.tgz && cd Python-3.11.3
 ./configure --enable-optimizations
 make altinstall
 
+# Wait 5 Seconds
+sleep 5
+
 # Clone RC Files to ~/.tmp
 git clone git@github.com:Kernelily/RC.git $HOME/.tmp/
 cp -r $HOME/.tmp/.vimrc $HOME/
 cp -r $HOME/.tmp/.config $HOME/
 echo -e "\nCloned RC files to $HOME/.tmp\nAnd Copyed them to $HOME"
+
+# Wait 5 Seconds
+sleep 5
 
 # Setup Vim Development Environment
 echo -e "\nDownloading \"vim-plug\" for Vim"
@@ -59,6 +72,10 @@ if which nvim > /dev/null; then
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
     nvim +PlugInstall
+
+    # Install NeoVim Provider
+    echo -e "\nInstalling NeoVim Providers"
+    npm install -g neovim && pip3 install pynvim neovim
 fi
 
 # Install Coc LSP 
@@ -68,9 +85,8 @@ vim +CocInstall coc-sh coc-sql coc-tsserver coc-yaml coc-json coc-html coc-css c
 vim +CocInstall coc-copilot coc-docker coc-flutter coc-git coc-emmet coc-highlight coc-prettier
 vim +CocInstall coc-pairs coc-spell-checker coc-lightbulb
 
-# Install NeoVim Provider
-echo "Installing NeoVim Providers"
-npm install -g neovim && pip3 install pynvim neovim
+# Wait 5 Seconds
+sleep 5
 
 # Generate SSH Key for GitHub Integration
 echo -e "\nEnter GitHub eMail Address => "
@@ -78,5 +94,8 @@ read gitHubMail
 
 ssh-keygen -t ed25519 -C “$gitHubMail“ && eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519 && cat ~/.ssh/id_ed25519.pub
+
+# Wait 5 Seconds
+sleep 5
 
 echo -e "\nFinished!"
