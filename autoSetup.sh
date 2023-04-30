@@ -14,7 +14,7 @@ else # The line including "pam_loginuid.so" starts with "s"ession
 fi
 
 echo -e "\nSet This Container's \"root\" Password"
-#passwd 
+passwd 
 
 # Enalbe "sshd"
 echo "Configuring \"sshd\""
@@ -26,8 +26,8 @@ systemctl restart sshd
 
 # Installing Some Langueages and so on...
 dnf install java-latest-openjdk-devel gcc g++ swift-lang -y
-#curl -sL install-node.vercel.app/lts | bash
-#curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl -sL install-node.vercel.app/lts | bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source "$HOME/.cargo/env"
 echo "\nInstalled Some Langueages and so on"
 
