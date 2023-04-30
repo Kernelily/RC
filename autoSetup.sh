@@ -2,7 +2,8 @@
 echo -e "Setting Up Development Environment...\n"
 
 cd $HOME 
-echo -e "Changed Current Dirctory to $HOME"
+mkdir -p $HOME/.tmp/.python
+echo -e "Changed Current Dirctory to $HOME\nAnd Created .tmp Dirctory"
 
 echo -e "Patching \"/etc/pam.d/sshd\""
 # if (No need to add "#", Pass this process...)
@@ -25,14 +26,21 @@ sed -i 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/ssh
 systemctl restart sshd
 
 # Installing Some Langueages and so on...
-dnf install java-latest-openjdk-devel gcc g++ swift-lang -y
+echo "\nInstalling Some Langueages and so on"
+dnf install java-latest-openjdk-devel gcc g++ swift-lang pip \
+    openssl-devel bzip2-devel sqlite-devel zlib-devel -y
 curl -sL install-node.vercel.app/lts | bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source "$HOME/.cargo/env"
-echo "\nInstalled Some Langueages and so on"
+
+# Install Latest Python
+cd $HOME/.tmp/.python
+wget https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tgz
+tar xzf Python-3.11.3.tgz && cd Python-3.11.3
+./configure --enable-optimizations
+make altinstall
 
 # Clone RC Files to ~/.tmp
-mkdir $HOME/.tmp
 git clone git@github.com:Kernelily/RC.git $HOME/.tmp/
 cp -r $HOME/.tmp/.vimrc $HOME/
 cp -r $HOME/.tmp/.config $HOME/
@@ -59,6 +67,10 @@ vim +CocInstall coc-clangd coc-java coc-jedi coc-rust-analyzer
 vim +CocInstall coc-sh coc-sql coc-tsserver coc-yaml coc-json coc-html coc-css coc-xml coc-cmake
 vim +CocInstall coc-copilot coc-docker coc-flutter coc-git coc-emmet coc-highlight coc-prettier
 vim +CocInstall coc-pairs coc-spell-checker coc-lightbulb
+
+# Install NeoVim Provider
+echo "Installing NeoVim Providers"
+npm install -g neovim && pip3 install pynvim neovim
 
 # Generate SSH Key for GitHub Integration
 echo -e "\nEnter GitHub eMail Address => "
