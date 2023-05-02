@@ -2,7 +2,7 @@
 echo -e "Setting Up Development Environment...\n"
 
 cd $HOME 
-mkdir -p $HOME/.tmp/.python
+mkdir -p $HOME/.tmp/{.rc, .python}
 echo -e "Changed Current Dirctory to $HOME\nAnd Created .tmp Dirctory"
 
 echo -e "Patching \"/etc/pam.d/sshd\""
@@ -15,12 +15,14 @@ else # The line including "pam_loginuid.so" starts with "s"ession
 fi
 
 echo -e "\nSet This Container's \"root\" Password"
-passwd 
+passwd
+
+# Wait 5 Seconds
+sleep 5
 
 # Enalbe "sshd"
 echo "Configuring \"sshd\""
 systemctl enable --now sshd
-
 # This Will be Deprecated Soon Due to Security Issues
 sed -i 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 systemctl restart sshd
