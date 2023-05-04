@@ -32,7 +32,7 @@ sleep 5
 
 # Installing Some Langueages and so on...
 echo -e "\nInstalling Some Langueages and so on"
-dnf install java-latest-openjdk-devel gcc g++ swift-lang pip \
+dnf install java-latest-openjdk-devel gcc g++ swift-lang pip clang-tools-extra \
     openssl-devel bzip2-devel sqlite-devel zlib-devel -y
 curl -sL install-node.vercel.app/lts | bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
