@@ -49,6 +49,7 @@ tar xzf Python-3.11.3.tgz && cd Python-3.11.3
 ```
 
 Download VimPlug (Vim, NVim)
+
 For Vim
 ```sh
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -83,7 +84,6 @@ git clone https://github.com/Kernelily/RC.git config
 
 Install Vim Plugins
 > vim +PlugInstall
-
 > nvim +PlugInstall
 
 Install Coc Extensions
