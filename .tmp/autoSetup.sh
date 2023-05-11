@@ -80,13 +80,6 @@ if which nvim > /dev/null; then
     npm install -g neovim && pip3 install pynvim neovim
 fi
 
-# Install Coc LSP 
-echo -e "\nInstalling Coc LSPs\nThis might take a while..."
-vim +CocInstall coc-clangd coc-java coc-jedi coc-rust-analyzer
-vim +CocInstall coc-sh coc-sql coc-tsserver coc-yaml coc-json coc-html coc-css coc-xml coc-cmake
-vim +CocInstall coc-copilot coc-docker coc-flutter coc-git coc-emmet coc-highlight coc-prettier
-vim +CocInstall coc-pairs coc-spell-checker coc-lightbulb
-
 # Wait 5 Seconds
 sleep 5
 
@@ -101,3 +94,10 @@ ssh-add ~/.ssh/id_ed25519 && cat ~/.ssh/id_ed25519.pub
 sleep 5
 
 echo -e "\nFinished!"
+
+# Install Coc LSP 
+echo -e "\nInstalling Coc LSPs\nThis might take a while..."
+vim +CocInstall coc-clangd coc-java coc-jedi coc-rust-analyzer
+vim +CocInstall coc-sh coc-sql coc-tsserver coc-yaml coc-json coc-html coc-css coc-xml coc-cmake
+vim +CocInstall coc-copilot coc-docker coc-flutter coc-git coc-emmet coc-highlight coc-prettier
+vim +CocInstall coc-pairs coc-spell-checker coc-lightbulb
