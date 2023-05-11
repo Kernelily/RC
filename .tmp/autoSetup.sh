@@ -1,21 +1,40 @@
 #!bin/bash
-echo -e "Setting Up Development Environment...\n"
+echo -e "autoSetup.sh\n\
+    - Patch \"/etc/pam.d/sshd\"\n\
+    - Set \"root\" Password\n\
+    - Enable \"sshd\"\n\
+    - Install Programming Languages\n\
+    - Install RC Files\n\
+    - Generate SSH Key for GitHub Integration\n\
+    \n\nThis Script Will Take a While\nPlease Wait...\n"
 
-cd $HOME 
-mkdir -p $HOME/.tmp/{.rc, .python}
-echo -e "Changed Current Dirctory to $HOME\nAnd Created .tmp Dirctory"
+echo -e "\n\nEnter \"root\" Password => "
+read rootPass
+
+echo -e "\nEnter GitHub eMail Address => "
+read gitHubMail
+
+echo -e "\nSetting Up Development Environment...\n"
+
+# Wait 5 Seconds
+sleep 5
+
+cd $HOME && mkdir -p $HOME/.tmp/{.rc, .python}
+echo -e "Changed Current Dirctory to $HOME\n\
+    And Created .tmp Dirctory\n"
 
 echo -e "Patching \"/etc/pam.d/sshd\""
+
 # if (No need to add "#", Pass this process...)
 if [[ -z "$(sed -n '/pam_loginuid.so/ s/^s//p' /etc/pam.d/sshd)" ]]; then
-    echo -e "Already Patched (/etc/pam.d/sshd)\nPassing This Process..."
+    echo -e "Already Patched (/etc/pam.d/sshd)\nPassing This Process...\n"
 else # The line including "pam_loginuid.so" starts with "s"ession 
     sed -i '/pam_loginuid.so/ s/^/# /' /etc/pam.d/sshd
-    echo "Successfully Patched (/etc/pam.d/sshd)"
+    echo "Successfully Patched (/etc/pam.d/sshd)\n"
 fi
 
-echo -e "\nSet This Container's \"root\" Password"
-passwd
+echo -e "Set This Container's \"root\" Password\n"
+echo -e "'$rootPass'\n'$rootPass'" | passwd
 
 # Wait 5 Seconds
 sleep 5
@@ -43,11 +62,9 @@ sleep 5
 
 # Install Latest Python
 echo -e "\nInstalling Latest Python"
-cd $HOME/.tmp/.python
-wget https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tgz
+cd $HOME/.tmp/.python && wget https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tgz
 tar xzf Python-3.11.3.tgz && cd Python-3.11.3
-./configure --enable-optimizations
-make altinstall
+./configure --enable-optimizations && make altinstall
 
 # Wait 5 Seconds
 sleep 5
@@ -84,20 +101,16 @@ fi
 sleep 5
 
 # Generate SSH Key for GitHub Integration
-echo -e "\nEnter GitHub eMail Address => "
-read gitHubMail
-
 ssh-keygen -t ed25519 -C “$gitHubMail“ && eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519 && cat ~/.ssh/id_ed25519.pub
 
 # Wait 5 Seconds
 sleep 5
 
-echo -e "\nFinished!"
-
 # Install Coc LSP 
-echo -e "\nInstalling Coc LSPs\nThis might take a while..."
-vim +CocInstall coc-clangd coc-java coc-jedi coc-rust-analyzer
-vim +CocInstall coc-sh coc-sql coc-tsserver coc-yaml coc-json coc-html coc-css coc-xml coc-cmake
-vim +CocInstall coc-copilot coc-docker coc-flutter coc-git coc-emmet coc-highlight coc-prettier
-vim +CocInstall coc-pairs coc-spell-checker coc-lightbulb
+nvim '+CocInstall coc-clangd coc-java coc-jedi coc-rust-analyzer coc-sh \
+    coc-sql coc-tsserver coc-yaml coc-json coc-html coc-css coc-xml coc-cmake \
+    coc-copilot coc-docker coc-flutter coc-git coc-emmet coc-highlight coc-prettier \
+    coc-pairs coc-spell-checker coc-lightbulb'
+
+echo -e "\nFinished!"

@@ -78,8 +78,8 @@ Register the result to GitHub Account
 
 Download pre-configuration files
 ```sh
-mkdir -p ~/.tmp/config && cd ~/.tmp/
-git clone https://github.com/Kernelily/RC.git config 
+mkdir -p ~/.tmp/.rc && cd ~/.tmp/
+git clone https://github.com/Kernelily/RC.git .rc
 ```
 
 Install Vim Plugins
@@ -88,4 +88,4 @@ Install Vim Plugins
 
 Install Coc Extensions
 Run in Vim \"NORMAL\" Mode
-:CocInstall coc-clangd coc-java coc-jedi coc-rust-analyzer coc-sh coc-sql coc-tsserver coc-yaml coc-json coc-html coc-css coc-xml coc-cmake coc-copilot coc-docker coc-flutter coc-git coc-emmet coc-highlight coc-prettier coc-pairs coc-spell-checker coc-lightbulb
+> :CocInstall coc-clangd coc-java coc-jedi coc-rust-analyzer coc-sh coc-sql coc-tsserver coc-yaml coc-json coc-html coc-css coc-xml coc-cmake coc-copilot coc-docker coc-flutter coc-git coc-emmet coc-highlight coc-prettier coc-pairs coc-spell-checker coc-lightbulb
