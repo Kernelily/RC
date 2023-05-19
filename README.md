@@ -9,9 +9,9 @@ The instruction to make a develop container.
 
 ## Create Container and Connect (Host, Podman)
 ```sh
-podman run --cap-add AUDIT_WRITE -d --name dmsv --network delta --restart=always -p 8192:8192 -p 19132:19132/udp -p 25565:25565 -v /svf/msf:/svf/msf -v /svf/tmp:/svf/tmp -v /svf/wsf:/svf/wsf dmsv:5.1
-podman run --cap-add AUDIT_WRITE -d --name dev --network delta --restart=always -p 87:22 -p 60000-60100:60000-60050/udp -v /svf/msf:/svf/msf -v /svf/tmp:/svf/tmp -v /svf/wsf:/svf/wsf dev:5.1
-podman run --cap-add AUDIT_WRITE -d --name sdev --network delta --restart=always -p 86:22 -p 60101-60200:60051-60100/udp sdev:5.1
+podman run --cap-add AUDIT_WRITE -d --name dmsv --network astra --restart=always -p 8192:8192 -p 19132:19132/udp -p 25565:25565 -v /svf/msf:/svf/msf -v /svf/tmp:/svf/tmp -v /svf/wsf:/svf/wsf dmsv:5.2
+podman run --cap-add AUDIT_WRITE -d --name dev --network astra --restart=always -p 87:22 -p 60000-60049:60000-60049/udp -v /svf/msf:/svf/msf -v /svf/tmp:/svf/tmp -v /svf/wsf:/svf/wsf dev:5.2
+podman run --cap-add AUDIT_WRITE -d --name sdev --network astra --restart=always -p 86:22 -p 60050-60100:60050-60100/udp dev:5.2
 ```
 
 Connect Container
